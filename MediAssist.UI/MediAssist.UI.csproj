@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<SpaRoot>ClientApp\</SpaRoot>
+	<UserSecretsId>f4e5ae4a-fffe-4f4b-a2e5-edb983417af6</UserSecretsId>
+	<DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="ClientApp\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="8.0.8" />
+    <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.18.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MediAssist.Application\MediAssist.Application.csproj" />
+    <ProjectReference Include="..\MediAssist.Dependency\MediAssist.Dependency.csproj" />
+  </ItemGroup>
+	
+	<!-- Add this Target element to run npm run build before building the .NET project -->
+	<Target Name="RunNpmBuild" BeforeTargets="Build">
+		<Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
+		<Exec WorkingDirectory="$(SpaRoot)" Command="npm run build" />
+	</Target>
+</Project>

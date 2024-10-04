@@ -1,1 +1,1 @@
-# medi-jenkins
+# MEdi
